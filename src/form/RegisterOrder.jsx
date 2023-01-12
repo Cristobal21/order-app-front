@@ -8,10 +8,10 @@ const initialForm = {
 	direccion: "",
 	sector: "",
 	referencia: "",
-	contacto: "",
-	pago: "",
+	numero: "",
+	estado_pago: "",
 	precio: "",
-	medioPago: "",
+	medio_pago: "",
 }
 
 const validationsForm = (form) => {
@@ -41,10 +41,10 @@ const validationsForm = (form) => {
 	} else if (!regexComments.test(form.referencia.trim())) {
 		errors.referencia =
 			'El campo "Referencia" no debe exceder los 255 caracteres.'
-	} else if (!form.contacto.trim()) {
-		errors.contacto = `El campo "Número Contacto" es requerido`
-	} else if (!regexContact.test(form.contacto.trim())) {
-		errors.contacto =
+	} else if (!form.numero.trim()) {
+		errors.numero = `El campo "Número Contacto" es requerido`
+	} else if (!regexContact.test(form.numero.trim())) {
+		errors.numero =
 			'El campo "Número Contacto" solo admite números y un largo máximo de 9 números.'
 	}
 
@@ -155,21 +155,21 @@ export const RegisterOrder = () => {
 						<p className="text-sm text-red-500">{errors.referencia}</p>
 					)}
 					<input
-						type="tel"
-						name="contacto"
-						id="contacto"
+						type="text"
+						name="numero"
+						id="numero"
 						placeholder="Número contacto (obligatorio)"
 						className="mt-2 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500"
-						value={form.contacto}
+						value={form.numero}
 						onChange={handleChange}
 						onBlur={handleBlur}
 					/>
-					{errors.contacto && (
-						<p className="text-sm text-red-500">{errors.contacto}</p>
+					{errors.numero && (
+						<p className="text-sm text-red-500">{errors.numero}</p>
 					)}
 					<input
 						type="radio"
-						name="pago"
+						name="estado_pago"
 						id="pagado"
 						value="pagado"
 						onChange={handleChange}
@@ -187,7 +187,7 @@ export const RegisterOrder = () => {
 					{!pago && <></>}
 					<input
 						type="radio"
-						name="pago"
+						name="estado_pago"
 						id="porpagar"
 						value="porpagar"
 						onChange={handleChange}
@@ -213,7 +213,7 @@ export const RegisterOrder = () => {
 								className="mt-2 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500"
 							/>
 							<select
-								name="mediopago"
+								name="medio_pago"
 								className="mt-2 text-lg text-slate-500 px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500"
 								defaultValue=""
 								onChange={handleChange}
@@ -232,6 +232,7 @@ export const RegisterOrder = () => {
 					/>
 				</div>
 			</form>
+			{/* //TODO aplicar condicional para cuando se envien los datos exitosamente */}
 			{loading}
 		</div>
 	)

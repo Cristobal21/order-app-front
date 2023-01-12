@@ -1,6 +1,9 @@
 import { useState } from "react"
+import { useSendData } from "./useSendData"
 
 export const useForm = (initialForm, validateForm) => {
+	const { sending } = useSendData()
+
 	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
 	const [loading, setLoading] = useState(false)
@@ -25,6 +28,7 @@ export const useForm = (initialForm, validateForm) => {
 		if (Object.keys(errors).length === 0) {
 			setLoading(true)
 			setForm(initialForm)
+			sending(form)
 		} else {
 			return
 		}
