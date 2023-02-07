@@ -1,9 +1,10 @@
 const getEnvVariables = () => {
-	import.meta.env
+  // eslint-disable-next-line no-unused-expressions
+  import.meta.env
 
-	return {
-		...import.meta.env,
-	}
+  return {
+    ...import.meta.env,
+  }
 }
 
 export default getEnvVariables
