@@ -6,14 +6,14 @@ export const useForm = (initialForm, validateForm) => {
 
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(1)
   // const [response, setResponse] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm({
       ...form,
-      [name]: value,
+      [name]: value
     })
   }
 
@@ -22,17 +22,28 @@ export const useForm = (initialForm, validateForm) => {
     setErrors(validateForm(form))
   }
 
+  // 1 = empty
+  // 2 = true
+  // 3 = false
   const handleSubmit = (e) => {
     e.preventDefault(e)
     setErrors(validateForm(form))
     if (Object.keys(errors).length === 0) {
-      setForm(initialForm)
-      sending(form)
-      setLoading(true)
+      if (form !== initialForm) {
+        sending(form)
+        setLoading(2)
+        setForm(initialForm)
+        setTimeout(() => {
+          setLoading(1)
+        }, 2000)
+      }
     } else {
-      return
+      setLoading(3)
+      setTimeout(() => {
+        setLoading(1)
+      }, 3000)
+      console.log('Error al agregar un nuevo pedido')
     }
-    setLoading(false)
   }
 
   return {
@@ -42,6 +53,6 @@ export const useForm = (initialForm, validateForm) => {
     // response,
     handleChange,
     handleBlur,
-    handleSubmit,
+    handleSubmit
   }
 }
