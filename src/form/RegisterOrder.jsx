@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from '../hooks/useForm'
 
+//* VALIDACIONES */
 const options = {
   timeZone: 'America/Santiago',
   year: 'numeric',
@@ -30,8 +31,8 @@ const validationsForm = (form) => {
   const regexProduct = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9-&-,.\s]{1,500}$/
   const regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/
   const regexAddress = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü0-9-.\s]+$/g
+  const regexReference = /^.{1,255}$/
   const regexContact = /^[0-9]{0,9}$/
-  const regexComments = /^.{1,255}$/
 
   if (!form.producto.trim()) {
     errors.producto = 'El campo "Producto" es requerido'
@@ -49,14 +50,14 @@ const validationsForm = (form) => {
       'El campo "Dirección solo acepta letras, números y espacios en blanco."'
   } else if (!form.referencia.trim()) {
     errors.referencia = 'El campo "Referencia lugar" es requerido'
-  } else if (!regexComments.test(form.referencia.trim())) {
+  } else if (!regexReference.test(form.referencia.trim())) {
     errors.referencia =
       'El campo "Referencia" no debe exceder los 255 caracteres.'
   } else if (!form.numero.trim()) {
     errors.numero = 'El campo "Número Contacto" es requerido'
   } else if (!regexContact.test(form.numero.trim())) {
     errors.numero =
-      'El campo "Número Contacto" solo admite números y un largo máximo de 9 números.'
+      'El campo "Número contacto" solo admite números y un largo máximo de 9 números.'
   }
 
   return errors
@@ -82,17 +83,15 @@ export const RegisterOrder = () => {
   }
 
   let load
-  if (loading === 1) {
-    load = <p />
-  } else if (loading === 2) {
-    load = <p className='text-lg text-center rounded-md bg-green-400 py-3 px-4 text-white w-80'>Agregado con éxito</p>
+  if (loading === 2) {
+    load = <p className='shadow mt-5 border-green-400 border text-xl text-center rounded bg-green-400 py-3 px-4 text-white w-full'>Agregado con éxito</p>
   } else if (loading === 3) {
-    load = <p className='text-lg text-center rounded-md bg-red-400 py-3 px-4 text-white w-80'>Error al agregar</p>
+    load = <p className='shadow mt-5 border-red-400 border text-xl text-center rounded bg-red-400 py-3 px-4 text-white w-full'>Error en el Formulario</p>
   }
 
   return (
-    <section className='flex flex-col items-center w-auto mr-3'>
-      <form onSubmit={handleSubmit} className='py-8 w-96'>
+    <section className='flex flex-col w-96 mx-3 mt-6 lg:mt-36 mb-36'>
+      <form onSubmit={handleSubmit} className='w-full'>
         <section className='block bg-white px-4 py-4 rounded-md'>
           <textarea
             cols='30'
@@ -100,40 +99,34 @@ export const RegisterOrder = () => {
             name='producto'
             id='producto'
             placeholder='Producto (obligatorio)'
-            className='mt-2 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+            className={`border border-slate-300 ${errors.producto ? 'border-red-500' : 'border-slate-300'} mt-2 block w-full px-3 py-2 bg-white border rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500`}
             value={form.producto}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.producto && (
-            <p className='text-sm text-red-500'>{errors.producto}</p>
-          )}
+          {errors.producto && <p className='text-sm text-red-500'>{errors.producto}</p>}
           <input
             type='text'
             name='nombre'
             id='nombre'
             placeholder='Nombre (obligatorio)'
-            className='mt-2 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+            className={`border border-slate-300 ${errors.nombre ? 'border-red-500' : 'border-slate-300'} mt-2 block w-full px-3 py-2 bg-white border rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500`}
             value={form.nombre}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.nombre && (
-            <p className='text-sm text-red-500'>{errors.nombre}</p>
-          )}
+          {errors.nombre && <p className='text-sm text-red-500'>{errors.nombre}</p>}
           <input
             type='text'
             name='direccion'
             id='direccion'
             placeholder='Dirección (obligatorio)'
-            className='mt-2 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+            className={`border border-slate-300 ${errors.direccion ? 'border-red-500' : 'border-slate-300'} mt-2 block w-full px-3 py-2 bg-white border rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500`}
             value={form.direccion}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.direccion && (
-            <p className='text-sm text-red-500'>{errors.direccion}</p>
-          )}
+          {errors.direccion && <p className='text-sm text-red-500'>{errors.direccion}</p>}
           <select
             name='sector'
             className='mt-2 text-lg text-slate-500 px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500 hover:cursor-pointer'
@@ -157,27 +150,23 @@ export const RegisterOrder = () => {
             cols='30'
             rows='4'
             placeholder='Referencia lugar (obligatorio)'
-            className='mt-2 block rounded-md text-lg w-full px-3 border border-slate-300 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+            className={`border border-slate-300 ${errors.referencia ? 'border-red-500' : 'border-slate-300'} mt-2 block w-full px-3 py-2 bg-white border rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500`}
             value={form.referencia}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.referencia && (
-            <p className='text-sm text-red-500'>{errors.referencia}</p>
-          )}
+          {errors.referencia && <p className='text-sm text-red-500'>{errors.referencia}</p>}
           <input
             type='text'
             name='numero'
             id='numero'
             placeholder='Número contacto (obligatorio)'
-            className='mt-2 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+            className={`border border-slate-300 ${errors.numero ? 'border-red-500' : 'border-slate-300'} mt-2 block w-full px-3 py-2 bg-white border rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500`}
             value={form.numero}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.numero && (
-            <p className='text-sm text-red-500'>{errors.numero}</p>
-          )}
+          {errors.numero && <p className='break-words text-sm text-red-500'>{errors.numero}</p>}
           {pago && <></>}
           <input
             type='radio'
@@ -235,14 +224,15 @@ export const RegisterOrder = () => {
               </select>
             </>
           )}
-          <input
+          {loading === 1 && <input
             type='submit'
-            value='Enviar'
-            className='bg-indigo-500 border border-indigo-500 active:scale-95 focus:outline-none text-xl py-3 mt-5 w-full rounded shadow-md hover:opacity-90 focus:bg-indigo-600 text-white hover:cursor-pointer'
-          />
+            value='Agregar'
+            className='bg-cyan-600 border border-cyan-500 active:scale-95 focus:outline-none text-xl py-3 mt-5 w-full rounded shadow-md hover:opacity-90 text-white hover:cursor-pointer'
+                            />}
+          {loading === 2 && load}
+          {loading === 3 && load}
         </section>
       </form>
-      {load}
     </section>
   )
 }

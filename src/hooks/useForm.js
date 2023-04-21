@@ -1,13 +1,13 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSendData } from './useSendData'
 
 export const useForm = (initialForm, validateForm) => {
-  const { sending } = useSendData()
-
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
+  const { sending } = useSendData()
   const [loading, setLoading] = useState(1)
-  // const [response, setResponse] = useState(null);
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -15,6 +15,7 @@ export const useForm = (initialForm, validateForm) => {
       ...form,
       [name]: value
     })
+    setErrors(validateForm(form))
   }
 
   const handleBlur = (e) => {
@@ -35,7 +36,10 @@ export const useForm = (initialForm, validateForm) => {
         setForm(initialForm)
         setTimeout(() => {
           setLoading(1)
-        }, 2000)
+        }, 1000)
+        setTimeout(() => {
+          navigate('/admin')
+        }, 1000)
       }
     } else {
       setLoading(3)
@@ -50,7 +54,6 @@ export const useForm = (initialForm, validateForm) => {
     form,
     errors,
     loading,
-    // response,
     handleChange,
     handleBlur,
     handleSubmit

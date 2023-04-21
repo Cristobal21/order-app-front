@@ -1,17 +1,22 @@
+import { useState } from 'react'
 import formApi from '../api/formApi'
 
 export const useDelete = (selectedText) => {
+  const [message, setMessage] = useState('')
+  const [confirm, setConfirm] = useState(false)
+
   const deleteOrder = () => {
     const url = `/admin/${selectedText}`
     try {
       formApi.delete(url)
         .then(response => {
           console.log(response.data)
-          window.alert('Se ha eliminado el pedido')
+          setMessage('Pedido Eliminado')
+          setConfirm(true)
         })
         .catch(error => {
           console.log(error)
-          window.alert('Error al momento de eliminar')
+          setMessage('Error al intentar eliminar')
         })
     } catch (error) {
       console.log(error)
@@ -19,6 +24,8 @@ export const useDelete = (selectedText) => {
     }
   }
   return {
-    deleteOrder
+    deleteOrder,
+    message,
+    confirm
   }
 }

@@ -1,23 +1,18 @@
 import { BrowserRouter } from 'react-router-dom'
 import { RouterApp } from './router/RouterApp'
-import { NavbarTitle } from './ui/NavbarTitle'
+// import { NavbarTitle } from './ui/NavbarTitle'
 import { Navigation } from './ui/Navigation'
 
 export const OrderApp = () => {
   return (
     <BrowserRouter>
-      <section className='flex justify-center gap-x-3'>
-        <section className='flex flex-col w-96'>
-          <section className='w-auto h-20' />
-          <section className='w-auto bg-white flex justify-center h-96 mt-8 py-10 rounded-md'>
-            <Navigation />
-          </section>
+      <section className='flex flex-col w-full h-screen justify-between'>
+        <section className='bg-slate-800 flex justify-center w-full fixed bottom-0 h-28 py-2 lg:top-0'>
+          <Navigation />
         </section>
-        <section className='w-full flex flex-col items-center justify-center'>
-          <NavbarTitle />
+        <section className='flex w-full justify-center items-center'>
           <RouterApp />
         </section>
-        {/* <section className='w-72 bg-white' /> */}
       </section>
     </BrowserRouter>
   )

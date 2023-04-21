@@ -3,7 +3,8 @@ import { useUpdate } from './useUpdate'
 
 export const useFormUpdate = (selectedText) => {
   const [form, setForm] = useState({})
-  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [emptyModal, setEmptyModal] = useState(false)
 
   const { updateOrder } = useUpdate(selectedText)
 
@@ -22,21 +23,22 @@ export const useFormUpdate = (selectedText) => {
   const handleSubmit = (e) => {
     e.preventDefault(e)
     if (Object.keys(form).length === 0) {
-      window.alert('No has escrito nada para modificar')
+      setEmptyModal(true)
     } else {
       updateOrder(form)
-      setLoading(true)
+      setSuccess(true)
       setTimeout(() => {
-        setLoading(false)
-      }, 2000)
+        setSuccess(false)
+      }, 1500)
     }
   }
 
   return {
     form,
-    loading,
+    success,
     handleChange,
     handleBlur,
-    handleSubmit
+    handleSubmit,
+    emptyModal
   }
 }
