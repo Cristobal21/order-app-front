@@ -15,11 +15,11 @@ export const Navigation = () => {
 
   useEffect(() => {
     getOrders()
-  }, [getInfo])
+  }, [])
 
-  // useEffect(() => {
-  //   getOrders()
-  // }, [getInfo])
+  useEffect(() => {
+    getOrders()
+  }, [getInfo])
 
   const handleDelete = () => {
     if (Object.keys(getInfo).length === 0) {
@@ -62,9 +62,11 @@ export const Navigation = () => {
   return (
     <section className='w-full h-auto flex justify-center items-center'>
       <span className='flex justify-center items-center w-full py-4 gap-x-2'>
-        <Link to='/' className='h-20 flex items-center justify-center text-center py-4 px-2 w-44 ml-2 bg-cyan-600 rounded text-xl text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer sm:text-md md:text-lg active:scale-95'>Agregar Pedido</Link>
-        <Link to='admin' className='h-20 flex items-center justify-center text-center py-4 px-2 w-44 mx-1 bg-cyan-600 rounded text-xl text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer sm:text-md md:text-lg active:scale-95'>Ver Pedidos</Link>
-        <button onClick={handleDelete} className='h-20 flex items-center justify-center py-4 px-2 mr-2 w-44 bg-cyan-600 rounded-md text-xl text-white shadow-md hover:focus:outline-none hover:text-slate-800 hover:bg-amber-500 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer sm:text-md md:text-lg active:scale-95'>Limpiar Lista</button>
+        <section className='flex gap-x-2 mx-2'>
+          <Link to='/' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Agregar Pedido</Link>
+          <Link to='admin' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer lg:text-xl active:scale-95'>Ver Pedidos</Link>
+          <button onClick={handleDelete} className='h-20 flex items-center justify-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:text-slate-800 hover:bg-amber-500 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Limpiar Lista</button>
+        </section>
         {clear
           ? (
               !borrado
