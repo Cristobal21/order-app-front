@@ -4,6 +4,7 @@ import { ModalDelete } from './ModalDeleteMsg'
 import { ModalDeleteConfirm } from './ModalDeleteConfirm'
 import { ModalUpdateMsg } from './ModalUpdateMsg'
 import { usePrint } from '../../hooks/usePrint'
+import { ButtonsActions } from './ButtonsActions'
 
 export const FormUpdate = ({ selectedText, onChildData }) => {
   const { getOrder, order } = useGetDataById(selectedText)
@@ -64,11 +65,11 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
   }
 
   return (
-    <section className='flex flex-col items-center w-full h-auto'>
-      <p className='text-lg text-center w-full'><strong>Pedido: {`${selectedText}`}</strong></p>
-      <form onSubmit={handleSubmit} className='pt-2 w-auto h-auto'>
-        <section className='flex gap-4 justify-center items-center bg-white mx-4 py-3 rounded'>
-          <section className='flex flex-col gap-y-2 h-full'>
+    <section className='flex flex-col items-center justify-center w-full h-auto'>
+      <p className='text-lg text-center w-auto'><strong>Pedido: {`${selectedText}`}</strong></p>
+      <form onSubmit={handleSubmit} className='pt-2 w-full'>
+        <section className='flex items-center justify-center gap-x-3 lg:gap-x-6 bg-white py-3 w-full h-full'>
+          <section className='flex flex-col lg:justify-center items-center gap-y-2 w-96'>
             <textarea
               cols='30'
               rows='2'
@@ -189,24 +190,11 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
               <option value='transferencia'>Transferencia</option>
             </select>
           </section>
-          <section className='flex flex-col items-center gap-y-2 h-full mb-8 w-72'>
-            <input
-              type='submit'
-              value='Modificar'
-              className='bg-cyan-600 active:scale-95 focus:outline-none text-3xl py-3 mt-5 w-48 h-36 rounded-lg shadow hover:opacity-90 text-white hover:cursor-pointer'
-              onClick={handleModalUpdate}
-            />
-            <input
-              type='button'
-              value='Eliminar'
-              className='bg-cyan-600 active:scale-95 focus:outline-none text-3xl py-3 mt-5 w-48 h-36 rounded-lg shadow hover:opacity-90 text-white hover:cursor-pointer'
-              onClick={handleDelete}
-            />
-            <input
-              type='button'
-              value='Imprimir'
-              className='bg-cyan-600 active:scale-95 focus:outline-none text-3xl py-3 mt-5 w-48 h-36 rounded-lg shadow hover:opacity-90 text-white hover:cursor-pointer'
-              onClick={handlePrint}
+          <section className='flex justify-center items-center gap-3 flex-col 6/12 '>
+            <ButtonsActions
+              handleModalUpdate={handleModalUpdate}
+              handleDelete={handleDelete}
+              handlePrint={handlePrint}
             />
           </section>
         </section>

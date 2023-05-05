@@ -1,0 +1,7 @@
+/* Estilos para el hover en pantalla grande */
+@media only screen and (min-width: 768px) {
+  /* Mostrar texto en lugar del ícono al hacer hover */
+  .hover\:text-hide:hover .text-hide {
+    display: none;
+  }
+}
