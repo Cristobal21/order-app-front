@@ -42,8 +42,6 @@ export const AdminPage = () => {
   return (
     <>
       <section className='flex flex-col items-center'>
-        {/* <button className='h-20 mt-4 lg:mt-36 flex items-center justify-center py-4 px-2 w-80 bg-teal-500 rounded text-2xl text-white shadow hover:focus:outline-none hover:opacity-75 focus:text-slate-800 hover:cursor-pointer active:scale-95'>Imprimir Pedidos</button> */}
-
         {getInfo.length !== 0
           ? (
             <section className='grid justify-center mt-8 lg:mt-32 gap-5 mx-4 mb-36 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:w-auto'>
