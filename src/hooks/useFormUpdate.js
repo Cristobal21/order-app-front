@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { useUpdate } from './useUpdate'
+import { useNavigate } from 'react-router-dom'
 
 export const useFormUpdate = (selectedText) => {
   const [form, setForm] = useState({})
   const [success, setSuccess] = useState(false)
   const [emptyModal, setEmptyModal] = useState(false)
+  const navigate = useNavigate()
 
   const { updateOrder } = useUpdate(selectedText)
 
@@ -27,6 +29,7 @@ export const useFormUpdate = (selectedText) => {
     } else {
       updateOrder(form)
       setSuccess(true)
+      success && navigate('admin', { replace: true })
       setTimeout(() => {
         setSuccess(false)
       }, 1500)

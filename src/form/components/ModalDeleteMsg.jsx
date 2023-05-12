@@ -1,7 +1,8 @@
+import { ButtonsModalDelete } from './ButtonsModalDelete'
 
-export const ModalDelete = ({ order, selectedText }) => {
+export const ModalDelete = ({ order, selectedText, handleCancel, handleConfirmDelete }) => {
   return (
-    <section className='flex flex-col justify-center px-8 lg:w-auto mx-2  bg-slate-600 pt-10 pb-28 rounded sm:w-full'>
+    <section className='flex flex-col justify-center items-center px-8 lg:w-auto mx-2 bg-slate-600 pt-10 pb-1 rounded absolute top-0 h-full sm:w-full'>
       <section className='flex flex-col justify-center w-auto text-white'>
         <p className='text-xl text-center'>¿Está segura(o) de eliminar el siguiente pedido?.</p>
         <p className='mt-4 text-center'>{`Id Pedido - ${selectedText}`}</p>
@@ -52,6 +53,7 @@ export const ModalDelete = ({ order, selectedText }) => {
           </table>
         </section>
       </section>
+      <ButtonsModalDelete handleCancel={handleCancel} handleConfirmDelete={handleConfirmDelete} />
     </section>
   )
 }

@@ -5,6 +5,7 @@ import { ModalDeleteConfirm } from './ModalDeleteConfirm'
 import { ModalUpdateMsg } from './ModalUpdateMsg'
 import { usePrint } from '../../hooks/usePrint'
 import { ButtonsActions } from './ButtonsActions'
+// import { useNavigate } from 'react-router-dom'
 
 export const FormUpdate = ({ selectedText, onChildData }) => {
   const { getOrder, order } = useGetDataById(selectedText)
@@ -13,6 +14,7 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
   const [modalDel, setModalDel] = useState(false)
   const [modalMessage, setModalMessage] = useState(false)
   const [errorUpdate, setErrorUpdate] = useState(false)
+  // const navigate = useNavigate()
 
   useEffect(() => {
     getOrder()
@@ -128,6 +130,15 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
+            <select
+              name='estadoPago'
+              className='text-lg text-slate-500 px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              onChange={handleChange}
+            >
+              <option value=''>-- Estado de Pago --</option>
+              <option value='pagado'>Pagado</option>
+              <option value='por pagar'>Por pagar</option>
+            </select>
             <input
               type='text'
               name='numero'
@@ -138,38 +149,6 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <section className='flex justify-center'>
-              <input
-                type='radio'
-                id='porpagar'
-                name='estadoPago'
-                value='por pagar'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className='peer/porpagar mr-1'
-              />
-              <label
-                htmlFor='porpagar'
-                className='peer-checked/porpagar:text-sky-500 mr-4 text-lg'
-              >
-                Por pagar
-              </label>
-              <input
-                type='radio'
-                id='pagado'
-                name='estadoPago'
-                value='pagado'
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className='peer/pagado mr-1'
-              />
-              <label
-                htmlFor='pagado'
-                className='peer-checked/pagado:text-sky-500 text-lg'
-              >
-                Pagado
-              </label>
-            </section>
             <input
               type='text'
               name='precio'
@@ -201,13 +180,9 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
       </form>
       {modalDel
         ? (
-          <section className='flex flex-col h-auto w-full absolute'>
-            <section className='flex justify-center w-full -mb-24'>
-              <ModalDelete order={order} selectedText={selectedText} />
-            </section>
-            <section className='flex justify-center items-end w-full'>
-              <button onClick={handleCancel} className='py-4 bg-cyan-600 text-white text-center text-lg w-40 m-4 rounded shadow hover:cursor-pointer hover:opacity-90 active:scale-95 hover:bg-amber-400 hover:text-slate-700'>Cancelar</button>
-              <button onClick={handleConfirmDelete} className='py-4 bg-cyan-600 text-white text-center text-lg w-40 m-4 rounded shadow hover:cursor-pointer hover:opacity-90 active:scale-95 hover:bg-amber-400 hover:text-slate-700'>Eliminar</button>
+          <section className='flex flex-col items-center h-auto w-full'>
+            <section className='flex flex-col justify-center items-center w-full bg-orange-500'>
+              <ModalDelete order={order} selectedText={selectedText} handleCancel={handleCancel} handleConfirmDelete={handleConfirmDelete} />
             </section>
           </section>
           )
@@ -215,6 +190,8 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
       {modalMessage && <ModalDeleteConfirm message={message} />}
       {errorUpdate && <ModalUpdateMsg message='No hay nada que modificar.' />}
       {success && <ModalUpdateMsg message='Pedido Actualizado' />}
+      {/* {success && window.location.reload()} */}
+      {/* {success && navigate('/admin', { replace: true })} */}
     </section>
   )
 }
