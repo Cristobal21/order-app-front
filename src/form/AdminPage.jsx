@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react'
 import { useDelete, useGetData } from '../hooks'
 import { FormUpdate } from './components/FormUpdate'
 import { ModifyOrder } from './components/ModifyOrder'
-import { ModalDeleteConfirm } from './components/ModalDeleteConfirm'
 
 export const AdminPage = () => {
   const [showModal, setShowModal] = useState(false)
   const [selectedText, setSelectedText] = useState('')
   const [confirmDelete, setConfirmDelete] = useState(false)
-  const { confirm, message } = useDelete()
+  const { confirm } = useDelete()
   const { getOrders, getInfo } = useGetData()
   const [emptyOrdersMsg, setEmptyOrdersMsg] = useState(false)
 
@@ -37,6 +36,10 @@ export const AdminPage = () => {
         setShowModal(false)
       }, 1000)
     }
+  }
+
+  const closeAfterUpdate = (isClose) => {
+    isClose && setShowModal(false)
   }
 
   return (
@@ -101,9 +104,8 @@ export const AdminPage = () => {
                   </table>
                 </section>
               ))}
-              {confirmDelete && <ModalDeleteConfirm message={message} />}
               <ModifyOrder showModal={showModal}>
-                <FormUpdate selectedText={selectedText} onChildData={handleFormUpdateData} />
+                <FormUpdate selectedText={selectedText} onChildData={handleFormUpdateData} closeAfterUpdate={closeAfterUpdate} />
                 <section className='flex gap-x-4 w-full justify-center'>
                   <button onClick={() => setShowModal(false)} className='bg-slate-400 py-4 px-4 rounded w-80 mt-4 text-xl text-center text-white active:scale-95 hover:opacity-90'>Cerrar</button>
                 </section>

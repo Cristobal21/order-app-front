@@ -50,8 +50,6 @@ export const ButtonsActions = ({ handleModalUpdate, handleDelete, handlePrint })
         onMouseLeave={handleMouseLeaveDelete}
       >
         <section className='flex flex-col items-center'>
-          {/* <AiOutlineDelete className='text-4xl' /> */}
-          {/* {hoverDelete ? <p className='text-center text-4xl w-48'>Eliminar</p> : <AiOutlineDelete className='text-4xl' />} */}
           {hoverDelete ? <AiOutlineDelete className='text-4xl w-auto h-auto' /> : <p className='text-center text-3xl w-full h-auto'>Eliminar</p>}
         </section>
       </button>
@@ -63,8 +61,6 @@ export const ButtonsActions = ({ handleModalUpdate, handleDelete, handlePrint })
         onMouseLeave={handleMouseLeavePrint}
       >
         <section className='flex flex-col items-center'>
-          {/* <AiOutlinePrinter className='text-4xl' /> */}
-          {/* {hoverPrint ? <p className='text-center text-4xl w-48'>Imprimir</p> : <AiOutlinePrinter className='text-4xl' />} */}
           {hoverPrint ? <AiOutlinePrinter className='text-4xl w-auto h-auto' /> : <p className='text-center text-3xl w-full h-auto'>Imprimir</p>}
         </section>
       </button>

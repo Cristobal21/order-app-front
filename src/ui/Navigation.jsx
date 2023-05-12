@@ -74,8 +74,8 @@ export const Navigation = () => {
                   <section className='bg-slate-700 flex flex-col justify-center items-center gap-y-4 py-14 w-auto sm:h-60 mb-96 mx-8 rounded shadow absolute lg:mb-0 lg:mt-96 lg:px-20 lg:h-auto'>
                     <h3 className='text-center lg:text-2xl text-lg text-white w-96 mx-2 break-words'>¿Está completamente segura(o) de eliminar todos los pedidos del día?</h3>
                     <section className='flex justify-center gap-x-4'>
-                      <button onClick={handleCancel} className='w-40 py-4 px-8 text-lg text-center text-white rounded-md shadow bg-cyan-600 hover:bg-cyan-500 hover:text-slate-600 active:scale-95'>Cancelar</button>
-                      <button onClick={handleConfirm} className='w-40 py-4 px-8 text-lg text-center text-white rounded-md shadow bg-cyan-600 hover:bg-cyan-500 hover:text-slate-600 active:scale-95'>Confirmar</button>
+                      <button onClick={handleCancel} className='w-40 py-4 px-8 text-lg text-center text-white rounded-md shadow bg-cyan-600 hover:bg-amber-500 hover:text-slate-800 active:scale-95'>Cancelar</button>
+                      <button onClick={handleConfirm} className='w-40 py-4 px-8 text-lg text-center text-white rounded-md shadow bg-cyan-600 hover:bg-amber-500 hover:text-slate-800 active:scale-95'>Confirmar</button>
                     </section>
                     {del && (
                       <>
@@ -88,13 +88,13 @@ export const Navigation = () => {
                             )
                           : (diferent
                               ? <section className='py-3 px-6 w-96 bg-red-300 text-center text-xl text-red-600 rounded'>Error de escritura, compruebe haber escrito correctamente.</section>
-                              : <button onClick={handleEliminate} className='py-3 px-5 w-60 text-lg bg-cyan-600 text-white rounded hover:bg-amber-500 hover:text-slate-600 active:scale-95'>Eliminar Pedidos</button>
+                              : <button onClick={handleEliminate} className='py-3 px-5 w-60 text-lg bg-cyan-600 text-white rounded hover:bg-amber-500 hover:text-slate-800 active:scale-95'>Eliminar Pedidos</button>
                             )}
                       </>
                     )}
                   </section>
                   )
-                : <section className='bg-blue-500 w-80 py-8 px-10 mb-96 break-words text-center rounded shadow absolute text-white text-xl lg:text-2xl lg:w-auto lg:mt-96 lg:mb-0 lg:px-32 lg:flex lg:items-center lg:h-40 lg: lg:py-10'>Los pedidos han sido eliminados</section>
+                : <section className='bg-cyan-700 w-80 py-8 px-10 mb-96 break-words text-center rounded shadow absolute text-white text-xl lg:text-2xl lg:w-auto lg:mt-96 lg:mb-0 lg:px-32 lg:flex lg:items-center lg:h-40 lg: lg:py-10'>Los pedidos han sido eliminados</section>
             )
           : <></>}
       </span>

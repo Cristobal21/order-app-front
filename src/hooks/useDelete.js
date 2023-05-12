@@ -2,7 +2,6 @@ import { useState } from 'react'
 import formApi from '../api/formApi'
 
 export const useDelete = (selectedText) => {
-  const [message, setMessage] = useState('')
   const [confirm, setConfirm] = useState(false)
 
   const deleteOrder = () => {
@@ -11,12 +10,14 @@ export const useDelete = (selectedText) => {
       formApi.delete(url)
         .then(response => {
           console.log(response.data)
-          setMessage('Pedido Eliminado')
           setConfirm(true)
+          setTimeout(() => {
+            window.location.reload()
+          }, 1800)
         })
         .catch(error => {
-          console.log(error)
-          setMessage('Error al intentar eliminar')
+          console.log('El pedido no ha sido eliminado')
+          throw new Error('Error:', error)
         })
     } catch (error) {
       console.log(error)
@@ -25,7 +26,6 @@ export const useDelete = (selectedText) => {
   }
   return {
     deleteOrder,
-    message,
     confirm
   }
 }

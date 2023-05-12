@@ -1,20 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useDelete, useFormUpdate, useGetDataById } from '../../hooks'
 import { ModalDelete } from './ModalDeleteMsg'
-import { ModalDeleteConfirm } from './ModalDeleteConfirm'
-import { ModalUpdateMsg } from './ModalUpdateMsg'
 import { usePrint } from '../../hooks/usePrint'
 import { ButtonsActions } from './ButtonsActions'
-// import { useNavigate } from 'react-router-dom'
+import { ModalFormMsg } from './ModalFormMsg'
 
-export const FormUpdate = ({ selectedText, onChildData }) => {
+export const FormUpdate = ({ selectedText, onChildData, closeAfterUpdate }) => {
   const { getOrder, order } = useGetDataById(selectedText)
-  const { deleteOrder, message } = useDelete(selectedText)
+  const { deleteOrder } = useDelete(selectedText)
   const { printOrder } = usePrint(selectedText)
   const [modalDel, setModalDel] = useState(false)
   const [modalMessage, setModalMessage] = useState(false)
   const [errorUpdate, setErrorUpdate] = useState(false)
-  // const navigate = useNavigate()
 
   useEffect(() => {
     getOrder()
@@ -28,6 +25,12 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
     emptyModal,
     success
   } = useFormUpdate(selectedText)
+
+  useEffect(() => {
+    setTimeout(() => {
+      closeAfterUpdate(success)
+    }, 1800)
+  }, [success])
 
   const sendDataToParent = () => {
     onChildData(true)
@@ -46,7 +49,7 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
       setTimeout(() => {
         setModalMessage(false)
       }, 1500)
-    }, 800)
+    }, 1000)
   }
 
   const handleCancel = () => {
@@ -187,11 +190,9 @@ export const FormUpdate = ({ selectedText, onChildData }) => {
           </section>
           )
         : <></>}
-      {modalMessage && <ModalDeleteConfirm message={message} />}
-      {errorUpdate && <ModalUpdateMsg message='No hay nada que modificar.' />}
-      {success && <ModalUpdateMsg message='Pedido Actualizado' />}
-      {/* {success && window.location.reload()} */}
-      {/* {success && navigate('/admin', { replace: true })} */}
+      {modalMessage && <ModalFormMsg message='Pedido eliminado.' />}
+      {errorUpdate && <ModalFormMsg message='No hay nada que modificar.' />}
+      {success && <ModalFormMsg message='Pedido actualizado' />}
     </section>
   )
 }
