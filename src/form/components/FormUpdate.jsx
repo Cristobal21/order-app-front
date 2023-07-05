@@ -6,7 +6,7 @@ import { ButtonsActions } from './ButtonsActions'
 import { ModalFormMsg } from './ModalFormMsg'
 import { CgClose } from 'react-icons/cg'
 
-export const FormUpdate = ({ selectedText, onChildData, showModal, closeAfterUpdate }) => {
+export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
   const { getOrder, order } = useGetDataById(selectedText)
   const { deleteOrder } = useDelete(selectedText)
   const { printOrder } = usePrint(selectedText)
@@ -26,12 +26,6 @@ export const FormUpdate = ({ selectedText, onChildData, showModal, closeAfterUpd
     emptyModal,
     success
   } = useFormUpdate(selectedText)
-
-  useEffect(() => {
-    setTimeout(() => {
-      closeAfterUpdate(success)
-    }, 1800)
-  }, [success])
 
   const sendDataToParent = () => {
     onChildData(true)
