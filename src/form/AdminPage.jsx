@@ -38,8 +38,8 @@ export const AdminPage = () => {
     }
   }
 
-  const closeAfterUpdate = (isClose) => {
-    isClose && setShowModal(false)
+  const handleCloseModal = (modalClose) => {
+    setShowModal(modalClose)
   }
 
   return (
@@ -105,10 +105,7 @@ export const AdminPage = () => {
                 </section>
               ))}
               <ModifyOrder showModal={showModal}>
-                <FormUpdate selectedText={selectedText} onChildData={handleFormUpdateData} closeAfterUpdate={closeAfterUpdate} />
-                <section className='flex gap-x-4 w-full justify-center'>
-                  <button onClick={() => setShowModal(false)} className='bg-slate-400 py-4 px-4 rounded w-80 mt-4 text-xl text-center text-white active:scale-95 hover:opacity-90'>Cerrar</button>
-                </section>
+                <FormUpdate selectedText={selectedText} onChildData={handleFormUpdateData} showModal={handleCloseModal} />
               </ModifyOrder>
             </section>
             )

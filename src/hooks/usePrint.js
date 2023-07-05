@@ -12,7 +12,6 @@ export const usePrint = (selectedText) => {
     const windowPrint = window.open('', '', 'height=800,width=1400,top=100,left=100')
     windowPrint.document.write('<html>')
     windowPrint.document.write(' <head>')
-    // windowPrint.document.write('  <script src="https://cdn.tailwindcss.com"></script>')
     windowPrint.document.write('  <title>Imprimiendo Pedido</title>')
     windowPrint.document.write(' </head>')
     windowPrint.document.write(' <body>')

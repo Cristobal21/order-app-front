@@ -4,8 +4,9 @@ import { ModalDelete } from './ModalDeleteMsg'
 import { usePrint } from '../../hooks/usePrint'
 import { ButtonsActions } from './ButtonsActions'
 import { ModalFormMsg } from './ModalFormMsg'
+import { CgClose } from 'react-icons/cg'
 
-export const FormUpdate = ({ selectedText, onChildData, closeAfterUpdate }) => {
+export const FormUpdate = ({ selectedText, onChildData, showModal, closeAfterUpdate }) => {
   const { getOrder, order } = useGetDataById(selectedText)
   const { deleteOrder } = useDelete(selectedText)
   const { printOrder } = usePrint(selectedText)
@@ -69,9 +70,13 @@ export const FormUpdate = ({ selectedText, onChildData, closeAfterUpdate }) => {
     printOrder()
   }
 
+  const handleCloseModal = () => {
+    showModal(false)
+  }
+
   return (
-    <section className='flex flex-col items-center justify-center w-full h-auto'>
-      <p className='text-lg text-center w-auto'><strong>Pedido: {`${selectedText}`}</strong></p>
+    <section className='flex flex-col items-center justify-center w-full h-auto px-3 py-2'>
+      <p className='text-lg text-center w-full flex justify-between font-normal'>{`PEDIDO: ${selectedText}`}<CgClose onClick={handleCloseModal} className='rounded-full h-6 w-6 p-1 bg-black/10 cursor-pointer active:scale-[.98] hover:bg-black/5 text-black' /></p>
       <form onSubmit={handleSubmit} className='pt-2 w-full'>
         <section className='flex items-center justify-center gap-x-3 lg:gap-x-6 bg-white py-3 w-full h-full'>
           <section className='flex flex-col lg:justify-center items-center gap-y-2 w-96'>

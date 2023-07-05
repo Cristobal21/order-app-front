@@ -31,37 +31,35 @@ export const ButtonsActions = ({ handleModalUpdate, handleDelete, handlePrint })
   return (
     <>
       <button
-        className='bg-cyan-600 active:scale-95  focus:outline-none py-6 lg:py-14 w-28 lg:w-40 rounded-lg h-36 lg:h-auto shadow hover:bg-cyan-800 text-white hover:cursor-pointer'
+        className='bg-cyan-600 active:scale-95 transition-all  focus:outline-none py-6 lg:py-14 w-28 lg:w-48 rounded-lg h-36 lg:h-40 shadow hover:bg-cyan-800 text-white hover:cursor-pointer'
         onClick={handleModalUpdate}
         onMouseEnter={handleMouseEnterEdit}
         onMouseLeave={handleMouseLeaveEdit}
       >
-        <section className='flex flex-col items-center m-0'>
-          {/* <AiOutlineEdit className='text-4xl' /> */}
-          {/* {hoverEdit ? <p className='text-center text-4xl w-48'>Modificar</p> : <AiOutlineEdit className='text-4xl' />} */}
-          {hoverEdit ? <AiOutlineEdit className='text-4xl w-auto h-auto' /> : <p className='text-center text-3xl w-full h-auto'>Modificar</p>}
+        <section className='flex flex-col items-center'>
+          {hoverEdit ? <p className='text-center text-4xl w-48'>Modificar</p> : <AiOutlineEdit className='text-4xl' />}
         </section>
       </button>
 
       <button
-        className='bg-cyan-600 active:scale-95  focus:outline-none py-6 lg:py-14 w-28 lg:w-40 rounded-lg h-36 lg:h-auto shadow hover:bg-cyan-800 text-white hover:cursor-pointer'
+        className='bg-cyan-600 active:scale-95 transition-all  focus:outline-none py-6 lg:py-14 w-28 lg:w-48 rounded-lg h-36 lg:h-40 shadow hover:bg-cyan-800 text-white hover:cursor-pointer'
         onClick={handleDelete}
         onMouseEnter={handleMouseEnterDelete}
         onMouseLeave={handleMouseLeaveDelete}
       >
         <section className='flex flex-col items-center'>
-          {hoverDelete ? <AiOutlineDelete className='text-4xl w-auto h-auto' /> : <p className='text-center text-3xl w-full h-auto'>Eliminar</p>}
+          {hoverDelete ? <p className='text-center text-4xl w-48'>Eliminar</p> : <AiOutlineDelete className='text-4xl' />}
         </section>
       </button>
 
       <button
-        className='bg-cyan-600 active:scale-95  focus:outline-none py-6 lg:py-14 w-28 lg:w-40 rounded-lg h-36 lg:h-auto shadow hover:bg-cyan-800 text-white hover:cursor-pointer'
+        className='bg-cyan-600 active:scale-95 transition-all  focus:outline-none py-6 lg:py-14 w-28 lg:w-48 rounded-lg h-36 lg:h-40 shadow hover:bg-cyan-800 text-white hover:cursor-pointer'
         onClick={handlePrint}
         onMouseEnter={handleMouseEnterPrint}
         onMouseLeave={handleMouseLeavePrint}
       >
         <section className='flex flex-col items-center'>
-          {hoverPrint ? <AiOutlinePrinter className='text-4xl w-auto h-auto' /> : <p className='text-center text-3xl w-full h-auto'>Imprimir</p>}
+          {hoverPrint ? <p className='text-center text-4xl w-48'>Imprimir</p> : <AiOutlinePrinter className='text-4xl' />}
         </section>
       </button>
     </>
