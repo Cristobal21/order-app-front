@@ -47,7 +47,7 @@ export const AdminPage = () => {
       <section className='flex flex-col items-center'>
         {getInfo.length !== 0
           ? (
-            <section className='grid justify-center mt-8 lg:mt-32 gap-5 mx-4 mb-36 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:w-auto'>
+            <section className='grid justify-center mt-8 lg:mt-32 gap-5 mx-10 lg:mx-20 mb-36 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:w-auto'>
               {getInfo.map((order) => (
                 <section
                   key={order._id}

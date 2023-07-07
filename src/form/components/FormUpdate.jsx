@@ -69,18 +69,18 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
   }
 
   return (
-    <section className='flex flex-col items-center justify-center w-full h-auto px-3 py-2'>
+    <section className='flex flex-col items-center justify-center w-full h-auto px-0 lg:px-6 py-2'>
       <p className='text-lg text-center w-full flex justify-between font-normal'>{`PEDIDO: ${selectedText}`}<CgClose onClick={handleCloseModal} className='rounded-full h-6 w-6 p-1 bg-black/10 cursor-pointer active:scale-[.98] hover:bg-black/5 text-black' /></p>
       <form onSubmit={handleSubmit} className='pt-2 w-full'>
         <section className='flex items-center justify-center gap-x-3 lg:gap-x-6 bg-white py-3 w-full h-full'>
-          <section className='flex flex-col lg:justify-center items-center gap-y-2 w-96'>
+          <section className='flex flex-col lg:justify-center items-center gap-y-2 w-full [&>textarea]:px-3 [&>input]:px-3 [&>select]:px-3'>
             <textarea
               cols='30'
               rows='2'
               name='producto'
               id='producto'
               placeholder={order.producto}
-              className='block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              className='block w-full py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
               value={form.producto}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -90,7 +90,7 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
               name='nombre'
               id='nombre'
               placeholder={order.nombre}
-              className='block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              className='block w-full py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
               value={form.nombre}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -100,14 +100,14 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
               name='direccion'
               id='direccion'
               placeholder={order.direccion}
-              className='block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              className='block w-full py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
               value={form.direccion}
               onChange={handleChange}
               onBlur={handleBlur}
             />
             <select
               name='sector'
-              className='text-lg text-slate-500 px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              className='text-lg text-slate-500 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
               onChange={handleChange}
             >
               <option value=''>-- Sector / Zona --</option>
@@ -127,14 +127,14 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
               cols='30'
               rows='2'
               placeholder={order.referencia}
-              className='block rounded-md text-lg w-full px-3 border border-slate-300 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              className='block rounded-md text-lg w-full border border-slate-300 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
               value={form.referencia}
               onChange={handleChange}
               onBlur={handleBlur}
             />
             <select
               name='estadoPago'
-              className='text-lg text-slate-500 px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              className='text-lg text-slate-500 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
               onChange={handleChange}
             >
               <option value=''>-- Estado de Pago --</option>
@@ -146,7 +146,7 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
               name='numero'
               id='numero'
               placeholder={order.numero}
-              className='block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              className='block w-full py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
               value={form.numero}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -158,11 +158,11 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
               placeholder={order.precio}
               value={form.precio}
               onChange={handleChange}
-              className='block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              className='block w-full py-2 bg-white border border-slate-300 rounded-md text-lg shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
             />
             <select
               name='medioPago'
-              className='text-lg text-slate-500 px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
+              className='text-lg text-slate-500 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500'
               onChange={handleChange}
             >
               <option value=''>-- Medio de pago --</option>
