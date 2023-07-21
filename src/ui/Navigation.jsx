@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useDeleteAll, useGetData } from '../hooks'
+import { useDeleteAll } from '../hooks'
 import { ModalEmptyList } from '../form/components/'
+import { useGetOrdersSent } from '../hooks/useGetOrdersSent'
 
 export const Navigation = () => {
-  const { getInfo, getOrders } = useGetData()
+  // const { getInfo, getOrders } = useGetData()
+  const { getInfoOrder, sentOrders } = useGetOrdersSent()
   const { deleteAll } = useDeleteAll()
   const [clear, setClear] = useState(false)
   const [del, setDel] = useState(false)
@@ -14,15 +16,17 @@ export const Navigation = () => {
   const [diferent, setDiferent] = useState(false)
 
   useEffect(() => {
-    getOrders()
+    // getOrders()
+    getInfoOrder()
   }, [])
 
-  useEffect(() => {
-    getOrders()
-  }, [getInfo])
+  // useEffect(() => {
+  //   // getOrders()
+  //   getInfoOrder()
+  // }, [sentOrders])
 
   const handleDelete = () => {
-    if (Object.keys(getInfo).length === 0) {
+    if (Object.keys(sentOrders).length === 0) {
       setEmptyOrders(true)
       setTimeout(() => {
         setEmptyOrders(false)
@@ -59,12 +63,14 @@ export const Navigation = () => {
       }, 2000)
     }
   }
+
   return (
     <section className='w-full h-auto flex justify-center items-center'>
-      <span className='flex justify-center items-center w-full py-4 gap-x-2'>
+      <div className='flex justify-center items-center w-full py-4 gap-x-2'>
         <section className='flex gap-x-2 mx-2'>
           <Link to='/' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Agregar Pedido</Link>
           <Link to='admin' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer lg:text-xl active:scale-95'>Ver Pedidos</Link>
+          <Link to='adminSent' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer lg:text-xl active:scale-95'>Despachados</Link>
           <button onClick={handleDelete} className='h-20 flex items-center justify-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:text-slate-800 hover:bg-amber-500 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Limpiar Lista</button>
         </section>
         {clear
@@ -97,7 +103,7 @@ export const Navigation = () => {
                 : <section className='bg-cyan-700 w-80 py-8 px-10 mb-96 break-words text-center rounded shadow absolute text-white text-xl lg:text-2xl lg:w-auto lg:mt-96 lg:mb-0 lg:px-32 lg:flex lg:items-center lg:h-40 lg: lg:py-10'>Los pedidos han sido eliminados</section>
             )
           : <></>}
-      </span>
+      </div>
       <ModalEmptyList empty={emptyOrders} message='No hay pedidos para eliminar' />
     </section>
   )

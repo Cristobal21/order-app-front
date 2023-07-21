@@ -6,7 +6,6 @@ export const useFormUpdate = (selectedText) => {
   const [form, setForm] = useState({})
   const [success, setSuccess] = useState(false)
   const [emptyModal, setEmptyModal] = useState(false)
-  // const navigate = useNavigate()
 
   const { updateOrder } = useUpdate(selectedText)
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDelete, useFormUpdate, useGetDataById } from '../../hooks'
+import { useDelete, useFormUpdate, useGetDataById, useUpdate } from '../../hooks'
 import { ModalDelete } from './ModalDeleteMsg'
 import { usePrint } from '../../hooks/usePrint'
 import { ButtonsActions } from './ButtonsActions'
@@ -10,6 +10,7 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
   const { getOrder, order } = useGetDataById(selectedText)
   const { deleteOrder } = useDelete(selectedText)
   const { printOrder } = usePrint(selectedText)
+  const { updateOrder } = useUpdate(selectedText)
   const [modalDel, setModalDel] = useState(false)
   const [modalMessage, setModalMessage] = useState(false)
   const [errorUpdate, setErrorUpdate] = useState(false)
@@ -17,6 +18,20 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
   useEffect(() => {
     getOrder()
   }, [])
+
+  const updateOrderActive = {
+    activo: false,
+    producto: order.producto,
+    nombre: order.nombre,
+    direccion: order.direccion,
+    sector: order.sector,
+    referencia: order.referencia,
+    numero: order.numero,
+    estadoPago: order.estadoPago,
+    precio: order.precio,
+    medioPago: order.medioPago
+    // fecha: new Date(Date.now()).toLocaleString('es-CL', options)
+  }
 
   const {
     form,
@@ -62,6 +77,8 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
 
   const handlePrint = () => {
     printOrder()
+    updateOrder(updateOrderActive)
+    window.location.reload()
   }
 
   const handleCloseModal = () => {
@@ -171,7 +188,7 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
               <option value='transferencia'>Transferencia</option>
             </select>
           </section>
-          <section className='flex justify-center items-center gap-3 flex-col 6/12 '>
+          <section className='flex justify-center items-center gap-3 flex-col 6/12'>
             <ButtonsActions
               handleModalUpdate={handleModalUpdate}
               handleDelete={handleDelete}
@@ -189,8 +206,8 @@ export const FormUpdate = ({ selectedText, onChildData, showModal }) => {
           </section>
           )
         : <></>}
-      {modalMessage && <ModalFormMsg message='Pedido eliminado.' />}
-      {errorUpdate && <ModalFormMsg message='No hay nada que modificar.' />}
+      {modalMessage && <ModalFormMsg message='Pedido eliminado' />}
+      {errorUpdate && <ModalFormMsg message='No hay nada que modificar' />}
       {success && <ModalFormMsg message='Pedido actualizado' />}
     </section>
   )

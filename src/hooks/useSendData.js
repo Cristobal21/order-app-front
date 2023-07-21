@@ -2,6 +2,7 @@ import formApi from '../api/formApi'
 
 export const useSendData = () => { // Para crear nuevo pedido
   const sending = async ({
+    activo,
     producto,
     nombre,
     direccion,
@@ -15,6 +16,7 @@ export const useSendData = () => { // Para crear nuevo pedido
   }) => {
     try {
       await formApi.post('/admin', {
+        activo,
         producto,
         nombre,
         direccion,

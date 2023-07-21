@@ -13,6 +13,7 @@ const options = {
 }
 
 const initialForm = {
+  // activo: false,
   producto: '',
   nombre: '',
   direccion: '',

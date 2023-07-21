@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useGetDataById } from './useGetDataById'
 
 export const usePrint = (selectedText) => {
+  // const [activo, setActivo] = useState(true)
   const { getOrder, order } = useGetDataById(selectedText)
 
   useEffect(() => {

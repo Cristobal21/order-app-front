@@ -1,62 +1,63 @@
 import { useState, useEffect } from 'react'
-import { useDelete, useGetData } from '../hooks'
-import { FormUpdate } from './components/FormUpdate'
-import { ModifyOrder } from './components/ModifyOrder'
+// import { useGetData } from '../hooks'
+import { useGetOrdersSent } from '../hooks/useGetOrdersSent'
+// import { FormUpdate } from './components/FormUpdate'
+// import { ModifyOrder } from './components/ModifyOrder'
 
-export const AdminPage = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [selectedText, setSelectedText] = useState('')
-  const [confirmDelete, setConfirmDelete] = useState(false)
-  const { confirm } = useDelete()
-  const { getOrders, getInfo } = useGetData()
+export const OrdersSent = () => {
+  // const [showModal, setShowModal] = useState(false)
+  // const [selectedText, setSelectedText] = useState('')
+  // const [confirmDelete, setConfirmDelete] = useState(false)
+  // const { confirm } = useDelete()
+  const { getInfoOrder, sentOrders } = useGetOrdersSent()
   const [emptyOrdersMsg, setEmptyOrdersMsg] = useState(false)
 
   useEffect(() => {
-    getOrders()
+    getInfoOrder()
     setTimeout(() => {
       setEmptyOrdersMsg(true)
     }, 1000)
   }, [])
 
-  const handleFormUpdateData = (data) => {
-    if (data) {
-      setTimeout(() => {
-        setShowModal(false)
-      }, 1500)
-    }
-  }
+  // const handleFormUpdateData = (data) => {
+  //   if (data) {
+  //     setTimeout(() => {
+  //       setShowModal(false)
+  //     }, 1500)
+  //   }
+  // }
 
-  const handleClickModal = (event) => {
-    const valueId = event.target.innerText
-    setSelectedText(valueId)
-    setShowModal(true)
-    setConfirmDelete(confirm)
-    if (confirmDelete) {
-      setTimeout(() => {
-        setShowModal(false)
-      }, 1000)
-    }
-  }
+  // const handleClickModal = (event) => {
+  //   const valueId = event.target.innerText
+  //   setSelectedText(valueId)
+  //   setShowModal(true)
+  //   setConfirmDelete(confirm)
+  //   if (confirmDelete) {
+  //     setTimeout(() => {
+  //       setShowModal(false)
+  //     }, 1000)
+  //   }
+  // }
 
-  const handleCloseModal = (modalClose) => {
-    setShowModal(modalClose)
-  }
+  // const handleCloseModal = (modalClose) => {
+  //   setShowModal(modalClose)
+  // }
 
   return (
     <>
       <section className='flex flex-col items-center'>
-        {getInfo.length !== 0
+        {sentOrders.length !== 0
           ? (
             <section className='grid justify-center mt-8 lg:mt-32 gap-5 mx-10 lg:mx-20 mb-36 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 sm:w-auto'>
-              {getInfo.map((order) => (
+              {sentOrders.map((order) => (
                 <section
                   key={order._id}
                   className='flex flex-col items-center justify-between bg-white rounded-md shadow gap-4 w-full text-md py-5 px-5 '
                   id='pedido'
                 >
                   <h2 className='flex flex-col justify-center text-center'>
-                    <strong>Modificar pedido</strong>
-                    <button onClick={handleClickModal} id='modifyOrder' className='border rounded-md bg-stone-300 py-1 px-3 hover:opacity-70'>{order._id}</button>
+                    <strong>Id Pedido</strong>
+                    <p id='modifyOrder' className='rounded bg-stone-300 py-1 px-3'>{order._id}</p>
                   </h2>
                   <table className='flex flex-col w-full'>
                     <tbody>
@@ -104,15 +105,15 @@ export const AdminPage = () => {
                   </table>
                 </section>
               ))}
-              <ModifyOrder showModal={showModal}>
+              {/* <ModifyOrder showModal={showModal}>
                 <FormUpdate selectedText={selectedText} onChildData={handleFormUpdateData} showModal={handleCloseModal} />
-              </ModifyOrder>
+              </ModifyOrder> */}
             </section>
             )
           : (
               emptyOrdersMsg &&
                 <section className='flex justify-center w-11/12 mt-4 bg-cyan-600 px-8 mx-2 rounded lg:mt-32'>
-                  <h1 className='text-2xl text-center text-white w-[500px] h-auto py-10 px-20'>No hay pedidos activos por el momento</h1>
+                  <h1 className='text-2xl text-center text-white w-[500px] h-auto py-10 px-20 '>No hay pedidos despachados</h1>
                 </section>
             )}
       </section>
