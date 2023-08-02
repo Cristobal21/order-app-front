@@ -35,6 +35,9 @@ const validationsForm = (form) => {
   const regexReference = /^.{1,255}$/
   const regexContact = /^[0-9]{0,9}$/
 
+  const radioPagar = document.getElementById('porpagar').checked
+  const radioPagado = document.getElementById('pagado').checked
+
   if (!form.producto.trim()) {
     errors.producto = 'El campo "Producto" es requerido'
   } else if (!regexProduct.test(form.producto.trim())) {
@@ -59,6 +62,8 @@ const validationsForm = (form) => {
   } else if (!regexContact.test(form.numero.trim())) {
     errors.numero =
       'El campo "Número contacto" solo admite números y un largo máximo de 9 números.'
+  } else if (!radioPagar || !radioPagado) {
+    errors.estadoPago = 'Debe seleccionar al menos una opción'
   }
 
   return errors
@@ -179,38 +184,44 @@ export const RegisterOrder = () => {
             <option value='por pagar' onClick={handleClickPagar}>Por pagar</option>
             <option value='pagado' onClick={handleClickPagado}>Pagado</option>
           </select> */}
-          <input
-            type='radio'
-            id='porpagar'
-            name='estadoPago'
-            value='por pagar'
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className='peer/porpagar mr-1'
-            onClick={handleClickPagar}
-          />
-          <label
-            htmlFor='porpagar'
-            className='peer-checked/porpagar:text-sky-500 mr-4 text-lg'
-          >
-            Por pagar
-          </label>
-          <input
-            type='radio'
-            id='pagado'
-            name='estadoPago'
-            value='pagado'
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className='peer/pagado mr-1 mt-3'
-            onClick={handleClickPagado}
-          />
-          <label
-            htmlFor='pagado'
-            className='peer-checked/pagado:text-sky-500 text-lg'
-          >
-            Pagado
-          </label>
+          <div className='flex justify-center items-center pt-2 gap-x-3'>
+            <div className='border border-slate-300 rounded py-2 w-full text-center flex justify-center gap-x-2'>
+              <input
+                type='radio'
+                id='porpagar'
+                name='estadoPago'
+                value='por pagar'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className='peer/porpagar py-3'
+                onClick={handleClickPagar}
+              />
+              <label
+                htmlFor='porpagar'
+                className='peer-checked/porpagar:text-sky-500 text-lg hover:cursor-pointer'
+              >
+                Por pagar
+              </label>
+            </div>
+            <div className='border border-slate-300 rounded py-2 w-full text-center flex justify-center gap-x-2'>
+              <input
+                type='radio'
+                id='pagado'
+                name='estadoPago'
+                value='pagado'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className='peer/pagado py-3'
+                onClick={handleClickPagado}
+              />
+              <label
+                htmlFor='pagado'
+                className='peer-checked/pagado:text-sky-500 text-lg hover:cursor-pointer'
+              >
+                Pagado
+              </label>
+            </div>
+          </div>
           {!pago && (
             <>
               <input
@@ -238,7 +249,7 @@ export const RegisterOrder = () => {
           {loading === 1 && <input
             type='submit'
             value='Agregar'
-            className='bg-cyan-600 border border-cyan-500 active:scale-95 focus:outline-none text-xl py-3 mt-5 w-full rounded shadow-md hover:opacity-90 text-white hover:cursor-pointer'
+            className='bg-cyan-600 border border-cyan-500 active:scale-95 focus:outline-none text-2xl py-3 mt-5 w-full rounded shadow-md hover:opacity-90 text-white hover:cursor-pointer'
                             />}
           {loading === 2 && load}
           {loading === 3 && load}

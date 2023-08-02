@@ -112,7 +112,7 @@ export const AdminPage = () => {
           : (
               emptyOrdersMsg &&
                 <section className='flex justify-center w-11/12 mt-4 bg-cyan-600 px-8 mx-2 rounded lg:mt-32'>
-                  <h1 className='text-2xl text-center text-white w-[500px] h-auto py-10 px-20'>No hay pedidos activos por el momento</h1>
+                  <h1 className='text-2xl text-center text-white w-[500px] h-auto py-10 px-20'>No hay pedidos pendientes por el momento</h1>
                 </section>
             )}
       </section>
