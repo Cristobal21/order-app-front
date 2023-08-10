@@ -35,9 +35,6 @@ const validationsForm = (form) => {
   const regexReference = /^.{1,255}$/
   const regexContact = /^[0-9]{0,9}$/
 
-  const radioPagar = document.getElementById('porpagar').checked
-  const radioPagado = document.getElementById('pagado').checked
-
   if (!form.producto.trim()) {
     errors.producto = 'El campo "Producto" es requerido'
   } else if (!regexProduct.test(form.producto.trim())) {
@@ -62,8 +59,6 @@ const validationsForm = (form) => {
   } else if (!regexContact.test(form.numero.trim())) {
     errors.numero =
       'El campo "Número contacto" solo admite números y un largo máximo de 9 números.'
-  } else if (!radioPagar || !radioPagado) {
-    errors.estadoPago = 'Debe seleccionar al menos una opción'
   }
 
   return errors
@@ -174,16 +169,6 @@ export const RegisterOrder = () => {
           />
           {errors.numero && <p className='break-words text-sm text-red-500'>{errors.numero}</p>}
           {pago && <></>}
-          {/* <select
-            name='estado'
-            className='mt-2 text-lg text-slate-500 px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm focus:outline-none w-full focus:border-indigo-300 focus:ring-1 focus:ring-indigo-500 hover:cursor-pointer'
-            onChange={handleChange}
-            defaultValue=''
-          >
-            <option value=''>-- Estado Pago --</option>
-            <option value='por pagar' onClick={handleClickPagar}>Por pagar</option>
-            <option value='pagado' onClick={handleClickPagado}>Pagado</option>
-          </select> */}
           <div className='flex justify-center items-center pt-2 gap-x-3'>
             <div className='border border-slate-300 rounded py-2 w-full text-center flex justify-center gap-x-2'>
               <input

@@ -1,12 +1,21 @@
 import { useState } from 'react'
 import formApi from '../api/formApi'
+import { useSendData } from './useSendData'
+import { useForm } from './useForm'
 
 export const useDelete = (selectedText) => {
   const [confirm, setConfirm] = useState(false)
+  const { sending } = useSendData()
+  const { form } = useForm()
 
   const deleteOrder = () => {
     const url = `/admin/${selectedText}`
     try {
+      formApi.post(url)
+        .then(response => {
+          console.log(response.data)
+          sending(form)
+        })
       formApi.delete(url)
         .then(response => {
           console.log(response.data)
@@ -16,7 +25,7 @@ export const useDelete = (selectedText) => {
           }, 1800)
         })
         .catch(error => {
-          console.log('El pedido no ha sido eliminado')
+          console.log('Ha ocurrido un error al intentar eliminar el pedido')
           throw new Error('Error:', error)
         })
     } catch (error) {

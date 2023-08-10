@@ -46,6 +46,7 @@ export const useForm = (initialForm, validateForm) => {
       setTimeout(() => {
         setLoading(1)
       }, 3000)
+      console.log(errors)
       console.log('Error al agregar un nuevo pedido')
     }
   }
