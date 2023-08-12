@@ -5,7 +5,6 @@ import { ModalEmptyList } from '../form/components/'
 import { useGetOrdersSent } from '../hooks/useGetOrdersSent'
 
 export const Navigation = () => {
-  // const { getInfo, getOrders } = useGetData()
   const { getInfoOrder, sentOrders } = useGetOrdersSent()
   const { deleteAll } = useDeleteAll()
   const [clear, setClear] = useState(false)
@@ -16,14 +15,8 @@ export const Navigation = () => {
   const [diferent, setDiferent] = useState(false)
 
   useEffect(() => {
-    // getOrders()
     getInfoOrder()
   }, [])
-
-  // useEffect(() => {
-  //   // getOrders()
-  //   getInfoOrder()
-  // }, [sentOrders])
 
   const handleDelete = () => {
     if (Object.keys(sentOrders).length === 0) {
@@ -71,7 +64,7 @@ export const Navigation = () => {
           <Link to='/' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Agregar Pedido</Link>
           <Link to='admin' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer lg:text-xl active:scale-95'>Activos</Link>
           <Link to='adminSent' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer lg:text-xl active:scale-95'>Despachados</Link>
-          <button onClick={handleDelete} className='h-20 flex items-center justify-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:text-slate-800 hover:bg-amber-500 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Limpiar Lista</button>
+          <button onClick={handleDelete} className='h-20 flex items-center justify-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:text-slate-800 hover:bg-amber-500 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Eliminar Despachados</button>
         </section>
         {clear
           ? (

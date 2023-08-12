@@ -5,8 +5,8 @@ import { useSendData } from './useSendData'
 export const useForm = (initialForm, validateForm) => {
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
-  const { sending } = useSendData()
   const [loading, setLoading] = useState(1)
+  const { sending } = useSendData()
   const navigate = useNavigate()
 
   const handleChange = (e) => {
