@@ -61,10 +61,10 @@ export const Navigation = () => {
     <section className='w-full h-auto flex justify-center items-center'>
       <div className='flex justify-center items-center w-full py-4 gap-x-2'>
         <section className='flex gap-x-2 mx-2'>
-          <Link to='/' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Agregar Pedido</Link>
-          <Link to='admin' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer lg:text-xl active:scale-95'>Activos</Link>
-          <Link to='adminSent' className='h-20 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer lg:text-xl active:scale-95'>Despachados</Link>
-          <button onClick={handleDelete} className='h-20 flex items-center justify-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:text-slate-800 hover:bg-amber-500 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Eliminar Despachados</button>
+          <Link to='/' className='h-16 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Agregar Pedido</Link>
+          <Link to='admin' className='h-16 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer lg:text-xl active:scale-95'>Activos</Link>
+          <Link to='adminSent' className='h-16 flex items-center justify-center text-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:bg-amber-500 hover:text-slate-800 focus:bg-amber-500 focus:text-slate-800 cursor-pointer lg:text-xl active:scale-95'>Despachados</Link>
+          <button onClick={handleDelete} className='h-16 flex items-center justify-center py-4 px-2 lg:w-44 w-28 bg-teal-600 rounded text-lg text-white shadow hover:focus:outline-none hover:text-slate-800 hover:bg-amber-500 focus:bg-amber-500 focus:text-slate-800 hover:cursor-pointer lg:text-xl active:scale-95'>Eliminar Pedidos</button>
         </section>
         {clear
           ? (
@@ -93,7 +93,11 @@ export const Navigation = () => {
                     )}
                   </section>
                   )
-                : <section className='bg-cyan-700 w-80 py-8 px-10 mb-96 break-words text-center rounded shadow absolute text-white text-xl lg:text-2xl lg:w-auto lg:mt-96 lg:mb-0 lg:px-32 lg:flex lg:items-center lg:h-40 lg: lg:py-10'>Los pedidos han sido eliminados</section>
+                : (
+                  <section className='w-full rounded shadow bg-slate-800 py-12 absolute mt-96'>
+                    <p className='text-center text-white text-4xl w-full h-auto'>Los pedidos han sido eliminados</p>
+                  </section>
+                  )
             )
           : <></>}
       </div>
